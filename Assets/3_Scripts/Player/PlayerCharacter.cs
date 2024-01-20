@@ -2,44 +2,56 @@ using UnityEngine;
 
 namespace Player
 {
-	public class PlayerCharacter : MonoBehaviour
-	{
-		#region Fields
+    public class PlayerCharacter : MonoBehaviour
+    {
+        #region Fields
 
-		[SerializeField]
-		private PlayerID playerID = PlayerID.PlayerOne;
+        public PlayerInputType inputType = PlayerInputType.WASD;
+        public float walkSpeed = 3.0f;
 
-		public float walkSpeed = 3.0f;
+        private Rigidbody2D rb = null;
+        private PlayerPosition playerPosition;
 
-		private CharacterController ctrl = null;
+        #endregion
+        #region Methods
 
-		#endregion
-		#region Properties
+        private void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            playerPosition = GetComponent<PlayerPosition>();
+            if (playerPosition == null)
+            {
+                Debug.LogError("PlayerPosition component not found on the player object.");
+            }
+        }
 
-		public PlayerID PlayerID => playerID;
+        void Update()
+        {
+            Vector2 inputAxis;
+            switch (inputType)
+            {
+                case PlayerInputType.WASD:
+                    inputAxis = new Vector2(Input.GetAxisRaw("Horizontal_AD"), Input.GetAxisRaw("Vertical_WS"));
+                    break;
+                case PlayerInputType.ArrowKeys:
+                    inputAxis = new Vector2(Input.GetAxisRaw("Horizontal_LeftRight"), Input.GetAxisRaw("Vertical_UpDown"));
+                    break;
+                default:
+                    inputAxis = Vector2.zero;
+                    break;
+            }
 
-		#endregion
-		#region Methods
+            if (playerPosition != null)
+            {
+                playerPosition.SetDir(inputAxis);
+            }
 
-		private void Start()
-		{
-			ctrl = GetComponent<CharacterController>();
-		}
+            Vector2 moveDir = inputAxis.normalized;
+            Vector2 moveSpeed = walkSpeed * moveDir;
 
-		void Update()
-		{
-			var inputAxis = playerID switch
-			{
-				PlayerID.PlayerOne => new Vector2(Input.GetAxisRaw("Horizontal_AD"), Input.GetAxisRaw("Vertical_WS")),
-				PlayerID.PlayerTwo => new Vector2(Input.GetAxisRaw("Horizontal_LeftRight"), Input.GetAxisRaw("Vertical_UpDown")),
-				_ => Vector2.zero,
-			};
-			Vector3 moveDir = new Vector3(inputAxis.x, inputAxis.y, 0).normalized;
-			Vector3 moveSpeed = Time.deltaTime * walkSpeed * moveDir;
+            rb.velocity = moveSpeed;
+        }
 
-			ctrl.Move(moveSpeed);
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }
