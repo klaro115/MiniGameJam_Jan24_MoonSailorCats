@@ -47,7 +47,7 @@ namespace Player
             }
 
             Vector2 moveDir = inputAxis.normalized;
-            Vector2 moveSpeed = Time.deltaTime * walkSpeed * moveDir;
+            Vector2 moveSpeed = walkSpeed * moveDir;
 
             rb.velocity = moveSpeed;
         }
