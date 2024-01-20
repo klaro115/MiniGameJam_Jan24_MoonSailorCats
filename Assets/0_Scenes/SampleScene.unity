@@ -417,6 +417,10 @@ MonoBehaviour:
   hullPoints: []
   steeringWheel: {fileID: 0}
   eventInterval: 8
+  uiPopupHullPrefab_broken: {fileID: 1364857298006173271, guid: 83251546c8f02114bb9e079b5a47d4c6, type: 3}
+  uiPopupHullPrefab_repaired: {fileID: 3176477167254064701, guid: 386617bb42fc81146b785956c32a09fa, type: 3}
+  uiPopupSteerPrefab_alert: {fileID: 3465658559560908422, guid: aaab9ad0eea78494fb57ea27144dd780, type: 3}
+  uiPopupSteerPrefab_avoided: {fileID: 8205694671919112365, guid: 31418e37039784b4aa6ff5eb73867c59, type: 3}
 --- !u!1 &667259959
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &692495888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,6 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b710b9da5af8f48a08f7b8f1c06ea172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCollisionCourse: 0
 --- !u!65 &2020943219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2160,6 +2165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RhythmGame
       objectReference: {fileID: 0}
+    - target: {fileID: 4021314898557184424, guid: b547262e7a1e44146a63f104608b2995, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9078946910424950855, guid: b547262e7a1e44146a63f104608b2995, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2336,6 +2345,10 @@ PrefabInstance:
     - target: {fileID: 8439950577293666413, guid: 32b66ec03edb74e4f852d437bdabe7e2, type: 3}
       propertyPath: m_Name
       value: SwingingRactionGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439950577293666413, guid: 32b66ec03edb74e4f852d437bdabe7e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

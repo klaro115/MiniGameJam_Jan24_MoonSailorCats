@@ -12,6 +12,11 @@ namespace GameLogic
 			SteeringWheel,
 			//...
 		}
+		private struct UiPopupInstances
+		{
+			public RectTransform uiPopupStart;
+			public RectTransform uiPopupEnd;
+		}
 
 		#endregion
 		#region Fields
@@ -27,15 +32,26 @@ namespace GameLogic
 
 		private const int EVENT_TYPE_COUNT = 2;
 
+		[Header("UI:")]
+		public RectTransform uiPopupHullPrefab_broken = null;
+		public RectTransform uiPopupHullPrefab_repaired = null;
+		public RectTransform uiPopupSteerPrefab_alert = null;
+		public RectTransform uiPopupSteerPrefab_avoided = null;
+
+		private Canvas canvas = null;
+
+
 		#endregion
 		#region Methods
 
 		private void Start()
 		{
+			canvas = FindObjectOfType<Canvas>();
+
 			hullPoints = GetComponentsInChildren<HullPoint>(false);
 			steeringWheel = GetComponentInChildren<SteeringWheel>(false);
 
-			lastEventTime = eventInterval;
+			lastEventTime = 0;
 		}
 
 		private void Update()
@@ -61,25 +77,47 @@ namespace GameLogic
 						{
 							int hullPtIdx = Random.Range(0, hullPoints.Length);
 							HullPoint hullPt = hullPoints[hullPtIdx];
-							if (!hullPt.isBroken)
+							if (!hullPt.IsBroken)
 							{
 								Debug.Log($"Hull point {i} broken!");
-								hullPt.isBroken = true;
+								var popups = SpawnPopup(hullPt.transform, uiPopupHullPrefab_broken, uiPopupHullPrefab_repaired);
+								hullPt.StartEvent(popups.uiPopupStart, popups.uiPopupEnd);
 								break;
 							}
 						}
 					}
 					break;
 				case ShipEventType.SteeringWheel:
+					if (!steeringWheel.OnCollisionCourse)
 					{
-						//TODO
 						Debug.Log($"Steering wheel event!");
+						var popups = SpawnPopup(steeringWheel.transform, uiPopupSteerPrefab_alert, uiPopupSteerPrefab_avoided);
+						steeringWheel.StartEvent(popups.uiPopupStart, popups.uiPopupEnd);
 					}
 					break;
 				//...
 				default:
 					break;
 			}
+		}
+
+		private UiPopupInstances SpawnPopup(Transform _target, RectTransform _uiPopupStartPrefab, RectTransform _uiPopupEndPrefab)
+		{
+			Vector3 screenPos = Camera.main.WorldToScreenPoint(_target.position) + Vector3.up * 50;
+
+			RectTransform uiPopupStart = Instantiate(_uiPopupStartPrefab, canvas.transform);
+			uiPopupStart.gameObject.SetActive(true);
+			uiPopupStart.position = screenPos;
+
+			RectTransform uiPopupEnd = Instantiate(_uiPopupEndPrefab, canvas.transform);
+			uiPopupEnd.gameObject.SetActive(false);
+			uiPopupEnd.position = screenPos;
+
+			return new UiPopupInstances()
+			{
+				uiPopupStart = uiPopupStart,
+				uiPopupEnd = uiPopupEnd,
+			};
 		}
 
 		#endregion
