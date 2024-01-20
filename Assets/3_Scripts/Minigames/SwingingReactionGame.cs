@@ -39,9 +39,6 @@ namespace Minigames
 				uiSlider.anchorMax = new Vector2(sliderPosition, 1);
 
 				// Check player inputs:
-				KeyCode actionKey = playerID == PlayerID.PlayerOne
-					? KeyCode.E
-					: KeyCode.RightShift;
 				if (Input.GetKeyDown(actionKey))
 				{
 					EndGame();

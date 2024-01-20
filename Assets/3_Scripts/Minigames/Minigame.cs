@@ -10,6 +10,7 @@ namespace Minigames
 
 		[SerializeField]
 		protected PlayerID playerID = PlayerID.PlayerOne;
+		protected KeyCode actionKey = KeyCode.E;
 		[SerializeField]
 		protected MinigameState state = MinigameState.Standby;
 		[SerializeField]
@@ -29,6 +30,10 @@ namespace Minigames
 			{
 				EndGame();
 			}
+
+			actionKey = playerID == PlayerID.PlayerOne
+				? KeyCode.E
+				: KeyCode.RightShift;
 
 			PlayerCharacter[] players = FindObjectsOfType<PlayerCharacter>(false);
 			PlayerCharacter player = players?.FirstOrDefault(o => o.PlayerID == _playerID);
