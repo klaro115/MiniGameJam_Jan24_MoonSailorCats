@@ -36,7 +36,7 @@ namespace Minigames
 				: KeyCode.RightShift;
 
 			PlayerCharacter[] players = FindObjectsOfType<PlayerCharacter>(false);
-			PlayerCharacter player = players?.FirstOrDefault(o => o.PlayerID == _playerID);
+			PlayerCharacter player = null;// players?.FirstOrDefault(o => o.PlayerID == _playerID);
 			if (player != null)
 			{
 				transform.position = Camera.main.WorldToScreenPoint(player.transform.position) + new Vector3(0, 50, 0);
