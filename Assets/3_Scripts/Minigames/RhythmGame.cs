@@ -130,6 +130,11 @@ namespace Minigames
 					}
 				}
 			}
+			// All beats have run through, end the minigame:
+			else
+			{
+				EndGame();
+			}
 
 			if (uiSuccessCount != null) uiSuccessCount.text = successCount.ToString();
 			if (uiErrorCount != null) uiErrorCount.text = errorCount.ToString();

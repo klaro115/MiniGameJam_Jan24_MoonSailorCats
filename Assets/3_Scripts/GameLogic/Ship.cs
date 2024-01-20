@@ -77,7 +77,7 @@ namespace GameLogic
 						{
 							int hullPtIdx = Random.Range(0, hullPoints.Length);
 							HullPoint hullPt = hullPoints[hullPtIdx];
-							if (!hullPt.IsBroken)
+							if (!hullPt.IsEventActive)
 							{
 								Debug.Log($"Hull point {i} broken!");
 								var popups = SpawnPopup(hullPt.transform, uiPopupHullPrefab_broken, uiPopupHullPrefab_repaired);
@@ -88,7 +88,7 @@ namespace GameLogic
 					}
 					break;
 				case ShipEventType.SteeringWheel:
-					if (!steeringWheel.OnCollisionCourse)
+					if (!steeringWheel.IsEventActive)
 					{
 						Debug.Log($"Steering wheel event!");
 						var popups = SpawnPopup(steeringWheel.transform, uiPopupSteerPrefab_alert, uiPopupSteerPrefab_avoided);

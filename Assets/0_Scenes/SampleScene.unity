@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9e760c11df1472d8b0b8897fc3305b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBroken: 0
+  isEventActive: 0
 --- !u!65 &196167319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9e760c11df1472d8b0b8897fc3305b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBroken: 0
+  isEventActive: 0
 --- !u!65 &552868989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -452,7 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 1
+  controlMode: 0
   walkSpeed: 3
+  uiMinigamePrefabs:
+  - {fileID: 7070946213923349111, guid: 32b66ec03edb74e4f852d437bdabe7e2, type: 3}
+  - {fileID: 1849657676407342767, guid: b547262e7a1e44146a63f104608b2995, type: 3}
 --- !u!143 &667259962
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1295,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9e760c11df1472d8b0b8897fc3305b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBroken: 0
+  isEventActive: 0
 --- !u!65 &1329826104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1482,7 +1486,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
+  controlMode: 0
   walkSpeed: 3
+  uiMinigamePrefabs:
+  - {fileID: 7070946213923349111, guid: 32b66ec03edb74e4f852d437bdabe7e2, type: 3}
+  - {fileID: 1849657676407342767, guid: b547262e7a1e44146a63f104608b2995, type: 3}
 --- !u!143 &1389284482
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1892,7 +1900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b710b9da5af8f48a08f7b8f1c06ea172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollisionCourse: 0
+  isEventActive: 0
 --- !u!65 &2020943219
 BoxCollider:
   m_ObjectHideFlags: 0
