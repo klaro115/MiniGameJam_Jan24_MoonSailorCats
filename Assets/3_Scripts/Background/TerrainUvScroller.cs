@@ -17,7 +17,7 @@ namespace Background
 
 		private const string NAME_TEX_MAIN = "_MainTex";
 		private const string NAME_TEX_NORMAL = "_BumpMap";
-
+			
 		#endregion
 		#region Methods
 
