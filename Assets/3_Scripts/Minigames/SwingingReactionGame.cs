@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Minigames
 {
-	public class SwingingReactionGame : Minigame
+	public sealed class SwingingReactionGame : Minigame
 	{
 		#region Fields
 

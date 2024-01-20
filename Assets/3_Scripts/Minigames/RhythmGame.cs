@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Minigames
 {
-    public class RhythmGame : Minigame
+	public sealed class RhythmGame : Minigame
     {
 		#region Types
 
